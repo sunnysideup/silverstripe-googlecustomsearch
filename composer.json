@@ -1,0 +1,25 @@
+{
+	"name": "sunnysideup/googlecustomsearch",
+	"type": "silverstripe-module",
+	"description": "Add google custom search to your silverstripe website",
+	"homepage": "https://github.com/sunnysideup/silverstripe-googlecustomsearch/",
+	"keywords": ["google custom search", "gcse", "search", "custom", "search", "full text search", "services"],
+	"license": "Sunny Side Up (BSD-3-Clause and CUSTOM)",
+	"authors":[
+		{
+			"name": "Nicolaas Francken",
+			"homepage": "https://github.com/sunnysideup",
+			"email" : "modules@sunnysideup.co.nz",
+			"role" : "lead developer"
+		}
+	],
+	"require":{
+		"silverstripe/framework": "~3.1",
+		"silverstripe/cms": "~3.1"
+	},
+	"suggest": {},
+	"support":{},
+	"extra": {
+		"installer-name": "googlecustomsearch"
+	}
+}
