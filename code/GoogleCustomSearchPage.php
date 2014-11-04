@@ -37,7 +37,7 @@ class GoogleCustomSearchPage extends Page {
 	}
 
 	public function populateDefaults() {
-		$this->Title = "Search results";
+		$this->Title = "Search";
 		$this->MenuTitle = "Search";
 		$this->ShowInMenus = 0;
 		$this->ShowInSearch = 0;
@@ -78,6 +78,10 @@ class GoogleCustomSearchPage_Controller extends Page_Controller {
 		return DBField::create_field('HTMLText', $string);
 	}
 
+	/**
+	 *
+	 * @return String
+	 */
 	function getTitle(){
 		if($searchPhrase = $this->SearchPhrase()->forTemplate()) {
 			return $this->dataRecord->Title._t("GoogleCustomSearchPage.FOR", " for ").$searchPhrase;

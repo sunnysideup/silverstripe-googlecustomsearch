@@ -52,11 +52,11 @@ class GoogleCustomSearchExt extends SiteTreeExtension {
 				return $form;
 			}
 			else {
-				user_error("You must set an API Key and a CX key in your configs to use the Google Custom Search Form", E_USER_WARNING);
+				user_error("You must set an API Key and a CX key in your configs to use the Google Custom Search Form", E_USER_NOTICE);
 			}
 		}
 		else {
-			user_error("You must create a GoogleCustomSearchPage first.", E_USER_WARNING);
+			user_error("You must create a GoogleCustomSearchPage first.", E_USER_NOTICE);
 		}
 	}
 

@@ -2,6 +2,10 @@ Google Custom Search Module for SilverStripe
 ============================================
 A simple extension to add a Google Custom Search to your SilverStripe template.
 
+It allows you to add a search form to any page, which will give instant
+ajaxified results within 200ms or so, as well as allowing the user
+to go through to a more advanced search page.
+
 Developer
 -----------------------------------------------
 Nicolaas Francken [at] sunnysideup.co.nz
