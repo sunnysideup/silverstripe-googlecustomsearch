@@ -30,9 +30,10 @@ class GoogleCustomSearchPage extends Page {
 
 	public function requireDefaultRecords() {
 		if($this->canCreate()) {
-			$search = new GoogleCustomSearchPage();
-			$search->write();
-			$search->doPublish('Stage', 'Live');
+			DB::alteration_message("Creating a GoogleCustomSearchPage", "created")
+			$page = new GoogleCustomSearchPage();
+			$page->write();
+			$page->doPublish('Stage', 'Live');
 		}
 	}
 
@@ -45,7 +46,7 @@ class GoogleCustomSearchPage extends Page {
 	}
 
 	public function canCreate($member = null) {
-		return GoogleCustomSearchPage::get()->count() ?  false : parent::canCreate($member);
+		return GoogleCustomSearchPage::get()->count() ?  false : true;
 	}
 
 }
