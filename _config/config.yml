@@ -1,0 +1,9 @@
+---
+Name: googlecustomsearch
+Before: 'mysite/*'
+After: 'framework/*','cms/*'
+---
+
+ContentController:
+  extensions:
+    - GoogleCustomSearchExt

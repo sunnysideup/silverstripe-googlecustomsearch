@@ -1,0 +1,8 @@
+---
+Name: googlecustomsearch_config
+Before: 'mysite/*'
+After: 'framework/*','cms/*', 'googlecustomsearch/*'
+---
+GoogleCustomSearchExt:
+  api_key: "XXX"
+  cx_key: "123:456"
