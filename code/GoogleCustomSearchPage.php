@@ -25,6 +25,9 @@ class GoogleCustomSearchPage extends Page {
 
 	public function getCMSFields() {
 		$fields = parent::getCMSFields();
+		$fields->addFieldToTab("Root.Searches",
+			new GoogleCustomSearchPage_RecordField("stats", "Search History Last 100 Days")
+		);
 		return $fields;
 	}
 
@@ -53,17 +56,35 @@ class GoogleCustomSearchPage extends Page {
 
 class GoogleCustomSearchPage_Controller extends Page_Controller {
 
+	private static $allowed_actions = array(
+		"register"
+	);
+
 	public function init() {
 		parent::init();
-		Requirements::themedCSS('GoogleCustomSearchPage');
-		Requirements::javascript(THIRDPARTY_DIR . '/jquery/jquery.js');
-		Requirements::javascript('googlecustomsearch/javascript/GoogleCustomSearchPage.js');
-		$cxKey = Config::inst()->get("GoogleCustomSearchExt", "cx_key");
-		Requirements::customScript("
-				GoogleCustomSearchPage.cxKey = '".$cxKey."';
-			",
-			"GoogleCustomSearchPage"
-		);
+		//register any search
+		if(isset($_GET["q"])) {
+			$searchString = Convert::raw2sql($_GET["q"]);
+			$url = "";
+			if(isset($_GET["u"])) {
+				$url = Convert::raw2sql($_GET["u"]);
+			}
+			GoogleCustomSearchPage_Record::add_entry($searchString, $url);
+		}
+		if(!$this->request->param("Action") == "register") {
+			Requirements::themedCSS('GoogleCustomSearchPage');
+			Requirements::javascript(THIRDPARTY_DIR . '/jquery/jquery.js');
+			Requirements::javascript('googlecustomsearch/javascript/GoogleCustomSearchPage.js');
+			$cxKey = Config::inst()->get("GoogleCustomSearchExt", "cx_key");
+			Requirements::customScript("
+					GoogleCustomSearchPage.cxKey = '".$cxKey."';
+				",
+				"GoogleCustomSearchPage"
+			);
+		}
+		else {
+			echo "registered ...";
+		}
 	}
 
 	/**
@@ -90,6 +111,10 @@ class GoogleCustomSearchPage_Controller extends Page_Controller {
 		else {
 			return $this->dataRecord->Title;
 		}
+	}
+
+	function register($request) {
+		return "nothing to add ...";
 	}
 
 }

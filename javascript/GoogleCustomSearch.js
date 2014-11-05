@@ -28,7 +28,13 @@ var GoogleCustomSearch = {
 	searchingResultsSelector: "#GoogleCustomSearchSearchingResult",
 
 	/**
-	 * pre-selector for the input field for the search
+	 * selector for form
+	 * @var String
+	 */
+	formSelector: "#Form_GoogleSiteSearchForm",
+
+	/**
+	 * selector for the input field for the search
 	 * @var String
 	 */
 	submitFieldSelector: "#Form_GoogleSiteSearchForm_search",
@@ -64,6 +70,12 @@ var GoogleCustomSearch = {
 	timeBeforeSearchRuns: 3,
 
 	/**
+	 * the word(s) being search for
+	 * @var String
+	 */
+	searchString: 3,
+
+	/**
 	 * runs the basic setup
 	 * @var Function
 	 */
@@ -72,6 +84,7 @@ var GoogleCustomSearch = {
 			function() {
 				var field = jQuery(this);
 				var value = field.val();
+				GoogleCustomSearch.searchString = value;
 				if(value && value.length >= GoogleCustomSearch.timeBeforeSearchRuns) {
 					clearTimeout(GoogleCustomSearch.timeoutHolder);
 					GoogleCustomSearch.timeoutHolder = setTimeout(
@@ -86,6 +99,22 @@ var GoogleCustomSearch = {
 					jQuery(GoogleCustomSearch.noResultsSelector).hide();
 					jQuery(GoogleCustomSearch.searchingResultsSelector).hide();
 				}
+			}
+		);
+		jQuery(GoogleCustomSearch.resultsSelector).on(
+			"click",
+			"a",
+			function(event){
+				var data = {
+					q: GoogleCustomSearch.searchString,
+					u: jQuery(this).attr("href")
+				}
+				var url = jQuery(GoogleCustomSearch.formSelector).attr("action")+"register/?"
+				jQuery.get(
+					url,
+					data
+				);
+				event.preventDefault();
 			}
 		);
 	},
@@ -154,7 +183,6 @@ var GoogleCustomSearch = {
 			link += '&q=' + escape(jQuery(this.submitFieldSelector).val());
 		return link;
 	}
-
 
 
 
