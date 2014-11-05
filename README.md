@@ -11,6 +11,10 @@ Developer
 Nicolaas Francken [at] sunnysideup.co.nz
 
 
+Inspiration
+-----------------------------------------------
+# https://github.com/silverstripe/silverstripe-spamprotection/
+
 Requirements
 -----------------------------------------------
 see composer.json
