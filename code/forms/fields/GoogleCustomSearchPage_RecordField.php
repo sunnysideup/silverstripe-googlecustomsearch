@@ -18,7 +18,7 @@ class GoogleCustomSearchPage_RecordField extends LiteralField {
 	 * minimum number of searches for the data to show up
 	 * @var Int
 	 */
-	protected $minimumCount = 1;
+	protected $minimumCount = 5;
 
 	function __construct($name, $title = "") {
 		$totalNumberOfDaysBack = $this->numberOfDays + $this->endingDaysBack;
@@ -40,7 +40,7 @@ class GoogleCustomSearchPage_RecordField extends LiteralField {
 		}
 		$content .= "
 		<div id=\"SearchHistoryTableForCMS\">
-			<h3>Search Phrases entered at least ".$this->minimumCount." between ".date("Y-M-d", strtotime("-".$totalNumberOfDaysBack." days"))." and ending ".date("Y-M-d", strtotime("-".$this->endingDaysBack." days"))."</h3>
+			<h3>Search Phrases entered at least ".$this->minimumCount." times between ".date("Y-M-d", strtotime("-".$totalNumberOfDaysBack." days"))." and ".date("Y-M-d", strtotime("-".$this->endingDaysBack." days"))."</h3>
 			<table class=\"highToLow\">";
 		$list = array();
 		foreach($data as $key => $row) {
