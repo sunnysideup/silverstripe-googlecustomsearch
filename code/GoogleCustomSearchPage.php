@@ -30,10 +30,10 @@ class GoogleCustomSearchPage extends Page {
 
 	public function requireDefaultRecords() {
 		if($this->canCreate()) {
-			DB::alteration_message("Creating a GoogleCustomSearchPage", "created")
+			DB::alteration_message("Creating a GoogleCustomSearchPage", "created");
 			$page = new GoogleCustomSearchPage();
-			$page->write();
-			$page->doPublish('Stage', 'Live');
+			$page->writeToStage('Stage');
+			$page->publish('Stage', 'Live');
 		}
 	}
 
