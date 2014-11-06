@@ -19,4 +19,8 @@ var GoogleCustomSearchPage = {
 
 }
 
-GoogleCustomSearchPage.init();
+jQuery(document).ready(
+	function(){
+		GoogleCustomSearchPage.init();
+	}
+);

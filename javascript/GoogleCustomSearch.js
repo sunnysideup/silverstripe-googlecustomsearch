@@ -37,7 +37,7 @@ var GoogleCustomSearch = {
 	 * selector for the input field for the search
 	 * @var String
 	 */
-	submitFieldSelector: "#Form_GoogleSiteSearchForm_search",
+	inputFieldSelector: "#Form_GoogleSiteSearchForm_search",
 
 	/**
 	 * api key... set by PHP
@@ -67,25 +67,25 @@ var GoogleCustomSearch = {
 	 * minimum number of character entered before search runs
 	 * @var Int
 	 */
-	timeBeforeSearchRuns: 3,
+	charsBeforeSearchRuns: 3,
 
 	/**
 	 * the word(s) being search for
 	 * @var String
 	 */
-	searchString: 3,
+	searchString: "",
 
 	/**
 	 * runs the basic setup
 	 * @var Function
 	 */
 	init: function(){
-		jQuery(this.submitFieldSelector).keyup(
+		jQuery(this.inputFieldSelector).keyup(
 			function() {
 				var field = jQuery(this);
 				var value = field.val();
 				GoogleCustomSearch.searchString = value;
-				if(value && value.length >= GoogleCustomSearch.timeBeforeSearchRuns) {
+				if(value && value.length >= GoogleCustomSearch.charsBeforeSearchRuns) {
 					clearTimeout(GoogleCustomSearch.timeoutHolder);
 					GoogleCustomSearch.timeoutHolder = setTimeout(
 						function() {
@@ -99,22 +99,6 @@ var GoogleCustomSearch = {
 					jQuery(GoogleCustomSearch.noResultsSelector).hide();
 					jQuery(GoogleCustomSearch.searchingResultsSelector).hide();
 				}
-			}
-		);
-		jQuery(GoogleCustomSearch.resultsSelector).on(
-			"click",
-			"a",
-			function(event){
-				var data = {
-					q: GoogleCustomSearch.searchString,
-					u: jQuery(this).attr("href")
-				}
-				var url = jQuery(GoogleCustomSearch.formSelector).attr("action")+"register/?"
-				jQuery.get(
-					url,
-					data
-				);
-				event.preventDefault();
 			}
 		);
 	},
@@ -143,14 +127,17 @@ var GoogleCustomSearch = {
 	 * @var Function
 	 */
 	callBack: function (response){
+		var item, myLink, link;
 		if(response.items) {
 			if(response.items.length) {
 				html = "";
 				html += "<ul>";
+				link = jQuery(GoogleCustomSearch.formSelector).attr("action")+"recordsearch/";
 				for (var i = 0; i < response.items.length; i++) {
-					var item = response.items[i];
+					item = response.items[i];
+					myLink = link + "?forwardto=" + escape(item.link) + "&search=" + escape(GoogleCustomSearch.searchString);
 					// in production code, item.htmlTitle should have the HTML entities escaped.
-					html += "<li><a href=\""+item.link+"\">" + item.htmlTitle+"</a></li>";
+					html += "<li><a href=\""+myLink+"\">" + item.htmlTitle+"</a></li>";
 				}
 				html += "</ul>";
 				//hide others
@@ -180,7 +167,7 @@ var GoogleCustomSearch = {
 			link += '&cx='+ this.cxKey;
 			link += '&fields=kind,items(htmlTitle,link)'
 			link += '&callback=GoogleCustomSearch.callBack';
-			link += '&q=' + escape(jQuery(this.submitFieldSelector).val());
+			link += '&q=' + escape(jQuery(this.inputFieldSelector).val());
 		return link;
 	}
 

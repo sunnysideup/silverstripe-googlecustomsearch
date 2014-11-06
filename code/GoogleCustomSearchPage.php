@@ -57,21 +57,21 @@ class GoogleCustomSearchPage extends Page {
 class GoogleCustomSearchPage_Controller extends Page_Controller {
 
 	private static $allowed_actions = array(
-		"register"
+		"recordsearch"
 	);
 
 	public function init() {
 		parent::init();
 		//register any search
-		if(isset($_GET["q"])) {
-			$searchString = Convert::raw2sql($_GET["q"]);
-			$url = "";
-			if(isset($_GET["u"])) {
-				$url = Convert::raw2sql($_GET["u"]);
+		if(isset($_GET["search"])) {
+			$searchString = Convert::raw2sql($_GET["search"]);
+			$forwardto = "";
+			if(isset($_GET["forwardto"])) {
+				$forwardto = Convert::raw2sql($_GET["forwardto"]);
 			}
-			GoogleCustomSearchPage_Record::add_entry($searchString, $url);
+			GoogleCustomSearchPage_Record::add_entry($searchString, $forwardto);
 		}
-		if(!$this->request->param("Action") == "register") {
+		if($this->request->param("Action") != "recordsearch") {
 			Requirements::themedCSS('GoogleCustomSearchPage');
 			Requirements::javascript(THIRDPARTY_DIR . '/jquery/jquery.js');
 			Requirements::javascript('googlecustomsearch/javascript/GoogleCustomSearchPage.js');
@@ -113,8 +113,10 @@ class GoogleCustomSearchPage_Controller extends Page_Controller {
 		}
 	}
 
-	function register($request) {
-		return "nothing to add ...";
+	function recordsearch($request) {
+		if(isset($_GET["forwardto"]) && $_GET["forwardto"]) {
+			return $this->redirect($_GET["forwardto"]);
+		}
 	}
 
 }

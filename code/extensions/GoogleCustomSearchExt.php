@@ -18,11 +18,13 @@ class GoogleCustomSearchExt extends SiteTreeExtension {
 	 */
 	private static $cx_key = "";
 
+
 	/**
 	 * returns the form
 	 * @return Form
 	 */
-	public function getGoogleSiteSearchForm() {
+	public function getGoogleSiteSearchForm($name = "GoogleSiteSearchForm") {
+		$formIDinHTML = "Form_".$name;
 		if($page = GoogleCustomSearchPage::get()->first()) {
 			Requirements::javascript(THIRDPARTY_DIR . '/jquery/jquery.js');
 			Requirements::javascript('googlecustomsearch/javascript/GoogleCustomSearch.js');
@@ -32,14 +34,20 @@ class GoogleCustomSearchExt extends SiteTreeExtension {
 				Requirements::customScript("
 						GoogleCustomSearch.apiKey = '".$apiKey."';
 						GoogleCustomSearch.cxKey = '".$cxKey."';
+						GoogleCustomSearch.formSelector = '#".$formIDinHTML."';
+						GoogleCustomSearch.inputFieldSelector = '#".$formIDinHTML."_search';
+						GoogleCustomSearch.resultsSelector = '#".$formIDinHTML."_Results';
 					",
 					"GoogleCustomSearchExt"
 				);
 				$form = new Form(
 					$this->owner,
 					'GoogleSiteSearchForm',
-					new FieldList($searchField = new TextField('search')),
-					new FieldList(new FormAction('doSearch', _t("GoogleCustomSearchExt.GO", "go")))
+					new FieldList(
+						$searchField = new TextField('search'),
+						$resultField = new LiteralField($name."_Results", "<div id=\"".$formIDinHTML."_Results\"></div>")
+					),
+					new FieldList(new FormAction('doSearch', _t("GoogleCustomSearchExt.GO", "Full Results")))
 				);
 				$form->setFormMethod('GET');
 				if($page = GoogleCustomSearchPage::get()->first()) {

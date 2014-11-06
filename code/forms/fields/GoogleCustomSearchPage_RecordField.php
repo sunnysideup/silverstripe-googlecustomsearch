@@ -18,7 +18,7 @@ class GoogleCustomSearchPage_RecordField extends LiteralField {
 	 * minimum number of searches for the data to show up
 	 * @var Int
 	 */
-	protected $minimumCount = 5;
+	protected $minimumCount = 1;
 
 	function __construct($name, $title = "") {
 		$totalNumberOfDaysBack = $this->numberOfDays + $this->endingDaysBack;
@@ -41,10 +41,9 @@ class GoogleCustomSearchPage_RecordField extends LiteralField {
 		$content .= "
 		<div id=\"SearchHistoryTableForCMS\">
 			<h3>Search Phrases entered at least ".$this->minimumCount." times between ".date("Y-M-d", strtotime("-".$totalNumberOfDaysBack." days"))." and ".date("Y-M-d", strtotime("-".$this->endingDaysBack." days"))."</h3>
-			<table class=\"highToLow\">";
+			<table class=\"highToLow\" style=\"width: 100%;\">";
 		$list = array();
 		foreach($data as $key => $row) {
-			//for the highest count, we work out a multi-plier.
 			if(!$key) {
 				$maxWidth = $row["myCount"];
 			}
@@ -52,7 +51,9 @@ class GoogleCustomSearchPage_RecordField extends LiteralField {
 			$list[$row["myCount"]."-".$key] = $row["Title"];
 			$content .='
 				<tr>
-					<td style="text-align: right; width: 30%; padding: 5px;">'.$row["Title"].'</td>
+					<td style="text-align: right; width: 30%; padding: 5px;">
+						'.$row["Title"].'
+					</td>
 					<td style="background-color: silver;  padding: 5px; width: 70%;">
 						<div style="width: '.$multipliedWidthInPercentage.'%; background-color: #0066CC; color: #fff;">'.$row["myCount"].'</div>
 					</td>
@@ -60,18 +61,36 @@ class GoogleCustomSearchPage_RecordField extends LiteralField {
 		}
 		$content .= '
 			</table>';
+		//a - z
 		asort($list);
 		$content .= "
-			<h3>A - Z</h3>
-			<table class=\"aToz\">";
+			<h3>A - Z with favourite links clicked</h3>
+			<table class=\"aToz\" style=\"width: 100%;\">";
 		foreach($list as $key => $title) {
 			$array = explode("-", $key);
 			$multipliedWidthInPercentage = floor(($array[0] / $maxWidth)* 100);
+			$titleData = DB::query("
+				SELECT COUNT(ID) myCount, \"URL\"
+				FROM \"GoogleCustomSearchPage_Record\"
+				WHERE Created > ( NOW() - INTERVAL ".$totalNumberOfDaysBack." DAY )
+					AND Created < ( NOW() - INTERVAL ".$this->endingDaysBack." DAY )
+					AND \"Title\" = '".$title."'
+				GROUP BY \"URL\"
+				HAVING COUNT(\"ID\") >= $this->minimumCount
+				ORDER BY myCount DESC
+				LIMIT 3;
+			");
+			unset($urlArray);
+			$urlArray = array();
+			foreach($titleData as $urlRow) {
+				$urlArray[] = "<li>".$urlRow["myCount"].": ".$urlRow["URL"]."</li>";
+			}
 			$content .='
 				<tr>
 					<td style="text-align: right; width: 30%; padding: 5px;">'.$title.'</td>
 					<td style="background-color: silver;  padding: 5px; width: 70%">
 						<div style="width: '.$multipliedWidthInPercentage.'%; background-color: #0066CC; color: #fff;">'.trim($array[0]).'</div>
+						<ul style="font-size: 10px">'.implode($urlArray).'</ul>
 					</td>
 				</tr>';
 		}
