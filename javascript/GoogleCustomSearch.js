@@ -40,6 +40,12 @@ var GoogleCustomSearch = {
 	inputFieldSelector: "#Form_GoogleSiteSearchForm_search",
 
 	/**
+	 * page that the see full results link will be directed to
+	 * @var String
+	 */
+	fullResultsLink: "/search/",
+
+	/**
 	 * api key... set by PHP
 	 * @var String
 	 */
@@ -139,6 +145,7 @@ var GoogleCustomSearch = {
 					// in production code, item.htmlTitle should have the HTML entities escaped.
 					html += "<li><a href=\""+myLink+"\">" + item.htmlTitle+"</a></li>";
 				}
+				html += "<li><a href=\""+GoogleCustomSearch.fullResultsLink+"?search=" + escape(GoogleCustomSearch.searchString)+"\">See Full Results</a></li>";
 				html += "</ul>";
 				//hide others
 				jQuery(GoogleCustomSearch.noResultsSelector).hide();
