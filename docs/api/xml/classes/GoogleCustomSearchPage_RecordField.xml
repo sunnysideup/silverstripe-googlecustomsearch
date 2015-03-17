@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="GoogleCustomSearchPage_RecordField" namespace="" name="GoogleCustomSearchPage_RecordField" abstract="false" final="false" start="3" end="130">
+  <file path="/var/www/_modules/googlecustomsearch/trunk/docs/en/phpdox/../../../code/forms/fields" file="GoogleCustomSearchPage_RecordField.php" realpath="/var/www/_modules/googlecustomsearch/trunk/code/forms/fields/GoogleCustomSearchPage_RecordField.php" size="3674" time="2015-03-14T10:22:13+13:00" unixtime="1426281733" sha1="f99a8668e1b92d3b5b28c47f2d79bef59748f5d2" relative="code/forms/fields/GoogleCustomSearchPage_RecordField.php"/>
+  <extends full="LiteralField" namespace="" name="LiteralField"/>
+  <member name="numberOfDays" type="integer" default="100" visibility="protected" line="9">
+    <docblock>
+      <description compact="total number days to search back"/>
+      <var type="object">
+        <type full="Int" namespace="" name="Int"/>
+      </var>
+    </docblock>
+  </member>
+  <member name="endingDaysBack" type="integer" default="0" visibility="protected" line="15">
+    <docblock>
+      <description compact="how many days ago the data-analysis should end"/>
+      <var type="object">
+        <type full="Int" namespace="" name="Int"/>
+      </var>
+    </docblock>
+  </member>
+  <member name="minimumCount" type="integer" default="1" visibility="protected" line="21">
+    <docblock>
+      <description compact="minimum number of searches for the data to show up"/>
+      <var type="object">
+        <type full="Int" namespace="" name="Int"/>
+      </var>
+    </docblock>
+  </member>
+  <constructor name="__construct" start="23" end="101" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="name" byreference="false" type="{unknown}"/>
+    <parameter name="title" byreference="false" type="string" default="&quot;&quot;"/>
+    <inline>
+      <comment value="a - z" line="64"/>
+    </inline>
+  </constructor>
+  <method name="setNumberOfDays" start="107" end="110" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description/>
+      <param type="object">
+        <type full="Int" namespace="" name="Int"/>
+      </param>
+      <return type="object">
+        <type full="Field" namespace="" name="Field"/>
+      </return>
+    </docblock>
+    <parameter name="days" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="setMinimumCount" start="116" end="119" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description/>
+      <param type="object">
+        <type full="Int" namespace="" name="Int"/>
+      </param>
+      <return type="object">
+        <type full="Field" namespace="" name="Field"/>
+      </return>
+    </docblock>
+    <parameter name="count" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="setEndingDaysBack" start="125" end="128" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description/>
+      <param type="object">
+        <type full="Int" namespace="" name="Int"/>
+      </param>
+      <return type="object">
+        <type full="Field" namespace="" name="Field"/>
+      </return>
+    </docblock>
+    <parameter name="count" byreference="false" type="{unknown}"/>
+  </method>
+</class>

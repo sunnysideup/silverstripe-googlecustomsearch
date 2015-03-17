@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<index xmlns="http://xml.phpdox.net/src" basedir="/var/www/_modules/googlecustomsearch/trunk">
+  <namespace name="">
+    <class name="GoogleCustomSearchPage_Record" src="code/model/GoogleCustomSearchPage_Record.php" xml="classes/GoogleCustomSearchPage_Record.xml"/>
+    <class name="GoogleCustomSearchPage_RecordField" src="code/forms/fields/GoogleCustomSearchPage_RecordField.php" xml="classes/GoogleCustomSearchPage_RecordField.xml"/>
+    <class name="GoogleCustomSearchExt" src="code/extensions/GoogleCustomSearchExt.php" xml="classes/GoogleCustomSearchExt.xml"/>
+    <class name="GoogleCustomSearchPage" src="code/GoogleCustomSearchPage.php" xml="classes/GoogleCustomSearchPage.xml"/>
+    <class name="GoogleCustomSearchPage_Controller" src="code/GoogleCustomSearchPage.php" xml="classes/GoogleCustomSearchPage_Controller.xml"/>
+  </namespace>
+</index>

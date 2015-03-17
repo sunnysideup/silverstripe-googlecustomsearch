@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="GoogleCustomSearchExt" namespace="" name="GoogleCustomSearchExt" abstract="false" final="false" start="6" end="79">
+  <file path="/var/www/_modules/googlecustomsearch/trunk/docs/en/phpdox/../../../code/extensions" file="GoogleCustomSearchExt.php" realpath="/var/www/_modules/googlecustomsearch/trunk/code/extensions/GoogleCustomSearchExt.php" size="2566" time="2015-03-14T10:22:13+13:00" unixtime="1426281733" sha1="7cf31b4fea5f907410064178aac66479a241b606" relative="code/extensions/GoogleCustomSearchExt.php"/>
+  <extends full="SiteTreeExtension" namespace="" name="SiteTreeExtension"/>
+  <member name="api_key" type="string" default="&quot;&quot;" visibility="private" line="12">
+    <docblock>
+      <description/>
+      <see value=": https://developers.google.com/custom-search/json-api/v1/introduction#identify_your_application_to_google_with_api_key"/>
+      <var type="object">
+        <type full="String" namespace="" name="String"/>
+      </var>
+    </docblock>
+  </member>
+  <member name="cx_key" type="string" default="&quot;&quot;" visibility="private" line="19">
+    <docblock>
+      <description/>
+      <see value=": https://developers.google.com/custom-search/json-api/v1/introduction#identify_your_application_to_google_with_api_key"/>
+      <var type="object">
+        <type full="String" namespace="" name="String"/>
+      </var>
+    </docblock>
+  </member>
+  <method name="getGoogleSiteSearchForm" start="26" end="69" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="returns the form"/>
+      <return type="object">
+        <type full="Form" namespace="" name="Form"/>
+      </return>
+    </docblock>
+    <parameter name="name" byreference="false" type="string" default="&quot;GoogleSiteSearchForm&quot;"/>
+  </method>
+  <method name="GoogleCustomSearchPage" start="75" end="77" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="returns the Google Search page..."/>
+      <return type="object">
+        <type full="GoogleCustomSearchPage" namespace="" name="GoogleCustomSearchPage"/>
+      </return>
+    </docblock>
+  </method>
+</class>
