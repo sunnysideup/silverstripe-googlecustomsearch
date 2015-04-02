@@ -11,6 +11,8 @@ class GoogleCustomSearchPage extends Page {
 
 	private static $can_be_root = true;
 
+	private static $description = "Page to search via Google and display search results.";
+
 	/**
 	 * Standard SS variable.
 	 */
@@ -41,6 +43,7 @@ class GoogleCustomSearchPage extends Page {
 	}
 
 	public function populateDefaults() {
+		parent::populateDefaults();
 		$this->Title = "Search";
 		$this->MenuTitle = "Search";
 		$this->ShowInMenus = 0;

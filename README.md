@@ -11,10 +11,6 @@ Developer
 Nicolaas Francken [at] sunnysideup.co.nz
 
 
-Inspiration
------------------------------------------------
-# https://github.com/silverstripe/silverstripe-spamprotection/
-
 Requirements
 -----------------------------------------------
 see composer.json
@@ -72,8 +68,8 @@ Super useful links (you are gonna need this ;-))
 * https://developers.google.com/custom-search/json-api/v1/introduction
 * https://developers.google.com/custom-search/json-api/v1/using_rest
 * http://developers.google.com/apis-explorer/#p/customsearch/v1/
-* http://developers.google.com/apis-explorer/#p/customsearch/v1/search.cse.list
 * https://console.developers.google.com/project
+* http://developers.google.com/apis-explorer/#p/customsearch/v1/search.cse.list
 * https://www.google.com/cse/all
 * https://www.google.com/cse/create/fromkwsetname
 * https://duckduckgo.com/api

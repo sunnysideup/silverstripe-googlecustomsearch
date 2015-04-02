@@ -2,10 +2,15 @@ jQuery(document).ready(
 	function(){
 		GoogleCustomSearch.init();
 	}
-
-)
+);
 
 var GoogleCustomSearch = {
+
+	/**
+	 * full results link
+	 * @var String
+	 */
+	moreResultsLinkLabel: "More results",
 
 	/**
 	 * selector for the html element showing results
@@ -26,6 +31,12 @@ var GoogleCustomSearch = {
 	 * @var String
 	 */
 	searchingResultsSelector: "#GoogleCustomSearchSearchingResult",
+
+	/**
+	 * The link to the full results
+	 * @var String
+	 */
+	fullResultsSelector: ".googleSearchFormFullResultsLink",
 
 	/**
 	 * selector for form
@@ -104,9 +115,19 @@ var GoogleCustomSearch = {
 					jQuery(GoogleCustomSearch.resultsSelector).html("");
 					jQuery(GoogleCustomSearch.noResultsSelector).hide();
 					jQuery(GoogleCustomSearch.searchingResultsSelector).hide();
+					jQuery(GoogleCustomSearch.fullResultsSelector).hide();
 				}
 			}
 		);
+		//full results link triggers a form submit...
+		jQuery(GoogleCustomSearch.fullResultsSelector).on(
+			"click",
+			function(event){
+				event.preventDefault();
+				jQuery(GoogleCustomSearch.formSelector).submit();
+			}
+		);
+		jQuery(this.inputFieldSelector).keyup();
 	},
 
 	/**
@@ -124,6 +145,7 @@ var GoogleCustomSearch = {
 		//hide others
 		jQuery(GoogleCustomSearch.resultsSelector).hide();
 		jQuery(GoogleCustomSearch.noResultsSelector).hide();
+		jQuery(GoogleCustomSearch.fullResultsSelector).hide();
 		//show the one
 		jQuery(GoogleCustomSearch.searchingResultsSelector).hide();
 	},
@@ -145,19 +167,23 @@ var GoogleCustomSearch = {
 					// in production code, item.htmlTitle should have the HTML entities escaped.
 					html += "<li><a href=\""+myLink+"\">" + item.htmlTitle+"</a></li>";
 				}
-				html += "<li class='fullResultsLink'><a href=\""+GoogleCustomSearch.fullResultsLink+"?search=" + escape(GoogleCustomSearch.searchString)+"\">10 closest results. See more.</a></li>";
+				if(GoogleCustomSearch.moreResultsLinkLabel) {
+					html += "<li class='fullResultsLink'><a href=\""+GoogleCustomSearch.fullResultsLink+"?search=" + escape(GoogleCustomSearch.searchString)+"\">"+GoogleCustomSearch.moreResultsLinkLabel+"</a></li>";
+				}
 				html += "</ul>";
 				//hide others
 				jQuery(GoogleCustomSearch.noResultsSelector).hide();
 				jQuery(GoogleCustomSearch.searchingResultsSelector).hide();
 				//show the one
 				jQuery(GoogleCustomSearch.resultsSelector).html(html).show();
+				jQuery(GoogleCustomSearch.fullResultsSelector).show();
 				return;
 			}
 		}
 		//hide others
 		jQuery(GoogleCustomSearch.resultsSelector).hide();
 		jQuery(GoogleCustomSearch.searchingResultsSelector).hide();
+		jQuery(GoogleCustomSearch.fullResultsSelector).hide();
 		//show the one
 		jQuery(GoogleCustomSearch.noResultsSelector).show();
 
@@ -183,3 +209,9 @@ var GoogleCustomSearch = {
 
 
 }
+
+
+jQuery(GoogleCustomSearch.resultsSelector).hide();
+jQuery(GoogleCustomSearch.searchingResultsSelector).hide();
+jQuery(GoogleCustomSearch.fullResultsSelector).hide();
+jQuery(GoogleCustomSearch.noResultsSelector).hide();
