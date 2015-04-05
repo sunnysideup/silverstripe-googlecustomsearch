@@ -111,6 +111,12 @@ var GoogleCustomSearch = {
 						GoogleCustomSearch.timeBeforeSearchRuns
 					);
 				}
+				else if(value.length > 0) {
+					jQuery(GoogleCustomSearch.resultsSelector).html("");
+					jQuery(GoogleCustomSearch.noResultsSelector).hide();
+					jQuery(GoogleCustomSearch.searchingResultsSelector).show();
+					jQuery(GoogleCustomSearch.fullResultsSelector).hide();
+				}
 				else {
 					jQuery(GoogleCustomSearch.resultsSelector).html("");
 					jQuery(GoogleCustomSearch.noResultsSelector).hide();
@@ -147,7 +153,7 @@ var GoogleCustomSearch = {
 		jQuery(GoogleCustomSearch.noResultsSelector).hide();
 		jQuery(GoogleCustomSearch.fullResultsSelector).hide();
 		//show the one
-		jQuery(GoogleCustomSearch.searchingResultsSelector).hide();
+		jQuery(GoogleCustomSearch.searchingResultsSelector).show();
 	},
 
 	/**
