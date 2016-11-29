@@ -3,6 +3,9 @@
     "type": "silverstripe-module",
     "description": "Add google custom search to your silverstripe website",
     "keywords": [
+        "Silverstripe-CMS",
+        "CMS",
+        "Silverstripe",
         "google custom search",
         "gcse",
         "search",
@@ -23,12 +26,8 @@
         "silverstripe/framework": "~3.1",
         "silverstripe/cms": "~3.1"
     },
-    "suggest": {
-
-    },
-    "support": {
-
-    },
+    "suggest": {},
+    "support": {},
     "extra": {
         "installer-name": "googlecustomsearch"
     }
