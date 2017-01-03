@@ -1,75 +1,72 @@
-Google Custom Search Module for SilverStripe
-============================================
-A simple extension to add a Google Custom Search to your SilverStripe template.
+# Silverstripe googlecustomsearch module
+[![Build Status](https://travis-ci.org/sunnysideup/silverstripe-googlecustomsearch.svg?branch=master)](https://travis-ci.org/sunnysideup/silverstripe-googlecustomsearch)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/sunnysideup/silverstripe-googlecustomsearch/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/sunnysideup/silverstripe-googlecustomsearch/?branch=master)
+[![codecov.io](https://codecov.io/github/sunnysideup/silverstripe-googlecustomsearch/coverage.svg?branch=master)](https://codecov.io/github/sunnysideup/silverstripe-googlecustomsearch?branch=master)
+![helpfulrobot](https://helpfulrobot.io/sunnysideup/googlecustomsearch/badge)
 
-It allows you to add a search form to any page, which will give instant
-ajaxified results within 200ms or so, as well as allowing the user
-to go through to a more advanced search page.
-
-Developer
------------------------------------------------
-Nicolaas Francken [at] sunnysideup.co.nz
+[![Latest Stable Version](https://poser.pugx.org/sunnysideup/googlecustomsearch/version)](https://packagist.org/packages/sunnysideup/googlecustomsearch)
+[![License](https://poser.pugx.org/sunnysideup/googlecustomsearch/license)](https://packagist.org/packages/sunnysideup/googlecustomsearch)
+[![Monthly Downloads](https://poser.pugx.org/sunnysideup/googlecustomsearch/d/monthly)](https://packagist.org/packages/sunnysideup/googlecustomsearch)
 
 
-Requirements
------------------------------------------------
-see composer.json
+## Documentation
 
 
-Documentation
------------------------------------------------
-Please contact author for more details.
 
-Any bug reports and/or feature requests will be
-looked at in detail
+ * [Developer Docs](docs/en/INDEX.md)
+ * [User Guide](docs/en/userguide.md)
+ * [API](http://ssmods.com/apis/googlecustomsearch/docs/en/api/)
 
-We are also very happy to provide personalised support
-for this module in exchange for a small donation.
+## Requirements
 
 
-Installation Instructions
------------------------------------------------
 
-1. Find out how to add modules to SS and add module as per usual.
+see [composer.json](composer.json) for details
 
-2. Review configs and add entries to mysite/_config/config.yml
-(or similar) as necessary.
-In the _config/ folder of this module
-you can usually find some examples of config options (if any).
-
-3. add <% include GoogleSiteSearchForm %> to any of your templates
-
-4. Make sure to run /dev/build/?flush=all
-
-4. create / edit the GoogleCustomSearchPage in your CMS (should be created automagically).
-
-5. to customise, you can edit / theme the following files:
-   * googlecustomsearch/css/GoogleCustomSearchPage.css
-   * replace methods and variables in the Javascript files
-   * theme the templates
-   * extend the GoogleCustomSearchPage as per usual
+### Suggested Modules
 
 
-Setting up a Google Custom Search Account
------------------------------------------------
-* Go to https://www.google.com/cse/create/ and create your search engine
-* Select the look and feel, configure all the options
-* If you click on the "Basics" link, you will see your Search engine unique ID
-* You will also need to:
 
-    a. pay for your custom google search engine OR
-
-    b. setup a google API key (this was a real pain to do!)
+see [composer.json](composer.json) for details
 
 
-Super useful links (you are gonna need this ;-))
------------------------------------------------
-* https://developers.google.com/custom-search/docs/element
-* https://developers.google.com/custom-search/json-api/v1/introduction
-* https://developers.google.com/custom-search/json-api/v1/using_rest
-* http://developers.google.com/apis-explorer/#p/customsearch/v1/
-* https://console.developers.google.com/project
-* http://developers.google.com/apis-explorer/#p/customsearch/v1/search.cse.list
-* https://www.google.com/cse/all
-* https://www.google.com/cse/create/fromkwsetname
-* https://duckduckgo.com/api
+## Installation
+
+
+```
+composer require sunnysideup/googlecustomsearch
+```
+
+### Configuration
+
+
+
+In the `_config` folder you will find the `googlecustomsearch.yml.example`
+file that shows options for the configuration of this module.
+
+We recommend that you:
+
+  1. copy these `googlecustomsearch.yml.example` files into your
+`mysite/_config` folder
+  2. remove the .example extension
+  3. delete the lines you not care about, and
+  4. adjust the configurations that you would like to use.
+
+
+## Contributing
+
+
+
+We welcome any contributions. See [CONTRIBUTING.md](CONTRIBUTING.md) for more details.
+
+## Paid assistance
+
+
+
+You can pay us to create an improved / adapted version of this module for your own projects.  Please contact us if you like to find out more: [www.sunnysideup.co.nz](http://www.sunnysideup.co.nz)
+
+## Author
+
+
+
+Sunny Side Up Ltd.
