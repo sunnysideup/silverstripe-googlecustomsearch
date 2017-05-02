@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<source xmlns="http://xml.phpdox.net/token">
-  <file xmlns="http://xml.phpdox.net/src" path="/var/www/_modules/googlecustomsearch/trunk/docs/en/phpdox/../../.." file="_config.php" realpath="/var/www/_modules/googlecustomsearch/trunk/_config.php" size="6" time="2015-03-14T10:22:13+13:00" unixtime="1426281733" sha1="10ecb38ffc99bee1f8be94f945b8a87a71faef9c" relative="_config.php"/>
-  <line no="1">
-    <token name="T_OPEN_TAG">&lt;?php</token>
-  </line>
-  <line no="2"/>
-</source>

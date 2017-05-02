@@ -15,7 +15,7 @@
 
  * [Developer Docs](docs/en/INDEX.md)
  * [User Guide](docs/en/userguide.md)
- * [API Docs](http://docs.ssmods.com/sunnysideup/googlecustomsearch)
+ * [API Docs](http://docs.ssmods.com/sunnysideup/googlecustomsearch/classes.xhtml)
 
 ## Requirements
 
